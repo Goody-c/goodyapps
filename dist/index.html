@@ -9,5 +9,31 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        var projectBase = '/goodyapps/';
+
+        function patchHomeLink() {
+          var homeLink = document.querySelector('a[aria-label="Go to home"]');
+          if (!homeLink) return;
+
+          homeLink.setAttribute('href', projectBase);
+          homeLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (window.location.pathname.indexOf(projectBase) === 0) {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              return;
+            }
+            window.location.assign(projectBase);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', patchHomeLink);
+        } else {
+          patchHomeLink();
+        }
+      })();
+    </script>
   </body>
 </html>
