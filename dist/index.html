@@ -58,6 +58,191 @@
           bottom: 84px;
         }
       }
+
+      .goody-enhancements {
+        margin: 48px 0 28px;
+        border: 1px solid #dbe2f0;
+        border-radius: 24px;
+        background: linear-gradient(160deg, #ffffff, #f8fbff 52%, #eef6ff);
+        box-shadow: 0 20px 40px -34px rgba(15, 23, 42, 0.45);
+        padding: 22px;
+      }
+
+      .goody-enhancements h3 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.2;
+        color: #0f172a;
+      }
+
+      .goody-enhancements p {
+        margin: 0;
+        color: #334155;
+      }
+
+      .goody-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .goody-grid.cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .goody-grid.cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .goody-grid.cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .goody-card {
+        border: 1px solid #d8e2f0;
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 14px;
+      }
+
+      .goody-card h4 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #1e293b;
+      }
+
+      .goody-card p {
+        margin: 8px 0 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .goody-price {
+        margin-top: 6px;
+        font-size: 28px;
+        font-weight: 900;
+        color: #0f172a;
+      }
+
+      .goody-offer-countdown {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+        border: 1px solid #fecaca;
+        background: #fff1f2;
+        color: #be123c;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 900;
+      }
+
+      .goody-button,
+      .goody-button:visited {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 9px 12px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
+        background: #ffffff;
+      }
+
+      .goody-button.primary {
+        border-color: #ef4444;
+        background: #ef4444;
+        color: #ffffff;
+      }
+
+      .goody-button.dark {
+        border-color: #0f172a;
+        background: #0f172a;
+        color: #ffffff;
+      }
+
+      .goody-inline-note {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #475569;
+        font-weight: 700;
+      }
+
+      .goody-input {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #0f172a;
+        background: #fff;
+      }
+
+      .goody-analytics {
+        position: fixed;
+        left: 12px;
+        bottom: 14px;
+        z-index: 91;
+        border-radius: 14px;
+        border: 1px solid #1f2937;
+        background: rgba(2, 6, 23, 0.92);
+        color: #e2e8f0;
+        padding: 10px 11px;
+        width: min(270px, calc(100vw - 24px));
+        box-shadow: 0 18px 35px -28px rgba(2, 6, 23, 0.95);
+      }
+
+      .goody-analytics p {
+        margin: 0;
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #93c5fd;
+      }
+
+      .goody-analytics ul {
+        margin: 8px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .goody-analytics li {
+        font-size: 11px;
+        font-weight: 700;
+        color: #cbd5e1;
+      }
+
+      @media (max-width: 980px) {
+        .goody-grid.cols-4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .goody-grid.cols-2,
+        .goody-grid.cols-3,
+        .goody-grid.cols-4 {
+          grid-template-columns: 1fr;
+        }
+
+        .goody-analytics {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -118,6 +303,287 @@
         } else {
           patchHomeLinks();
         }
+      })();
+    </script>
+    <script>
+      (function () {
+        var analyticsKey = 'goodyapps-conversion-analytics';
+        var offerDeadline = Date.now() + (9 * 24 * 60 * 60 * 1000);
+
+        function ready(fn) {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+          } else {
+            fn();
+          }
+        }
+
+        function insertEnhancements() {
+          var main = document.querySelector('main');
+          if (!main || document.getElementById('goody-enhancements')) {
+            return;
+          }
+
+          var targetFooter = main.querySelector('footer');
+          var section = document.createElement('section');
+          section.id = 'goody-enhancements';
+          section.className = 'goody-enhancements';
+          section.innerHTML = [
+            '<p style="margin:0;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#64748b;">Sales Command Center</p>',
+            '<h3>Everything needed to convert faster</h3>',
+            '<p style="margin-top:8px;font-size:14px;font-weight:700;">Designed to help prospects understand value, book quickly, and buy with confidence.</p>',
+
+            '<div id="goody-pricing-comparison" class="goody-grid cols-2" style="margin-top:14px;">',
+            '<article class="goody-card"><h4>Standard License</h4><p class="goody-price">$100</p><p>One-time license with full feature access and onboarding handoff checklist.</p></article>',
+            '<article class="goody-card"><h4>Launch Offer</h4><p class="goody-price">$65</p><p>First-month special for new stores. Perfect for quick rollout and proof.</p><p class="goody-offer-countdown" id="goody-offer-countdown">Offer ends in --d --h --m</p></article>',
+            '</div>',
+
+            '<div class="goody-grid cols-2" style="margin-top:12px;">',
+            '<article class="goody-card">',
+            '<h4>ROI Calculator</h4>',
+            '<p>Estimate monthly value from checkout speed and operational control.</p>',
+            '<div class="goody-grid cols-2" style="margin-top:10px;">',
+            '<label><span style="display:block;font-size:11px;font-weight:800;color:#475569;margin-bottom:4px;">Transactions/day</span><input id="goody-roi-transactions" class="goody-input" type="number" min="1" value="45"></label>',
+            '<label><span style="display:block;font-size:11px;font-weight:800;color:#475569;margin-bottom:4px;">Avg basket ($)</span><input id="goody-roi-basket" class="goody-input" type="number" min="1" value="18"></label>',
+            '</div>',
+            '<p id="goody-roi-output" class="goody-inline-note">Estimated monthly value: --</p>',
+            '</article>',
+            '<article class="goody-card">',
+            '<h4>Store-Type Quick Start</h4>',
+            '<p>Jump into the most relevant path for your business format.</p>',
+            '<div class="goody-grid cols-2" style="margin-top:10px;">',
+            '<button class="goody-button" type="button" data-store-path="supermarket">Supermarket</button>',
+            '<button class="goody-button" type="button" data-store-path="gadget">Gadget Store</button>',
+            '<button class="goody-button" type="button" data-store-path="pharmacy">Pharmacy</button>',
+            '<button class="goody-button" type="button" data-store-path="fashion">Fashion</button>',
+            '</div>',
+            '<p id="goody-path-note" class="goody-inline-note">Select a store type to jump to a pre-focused feature view.</p>',
+            '</article>',
+            '</div>',
+
+            '<div class="goody-grid cols-3" style="margin-top:12px;">',
+            '<article class="goody-card">',
+            '<h4>Book a Demo Slot</h4>',
+            '<p>Pick a speed lane and reserve your walkthrough.</p>',
+            '<div class="goody-grid" style="margin-top:10px;">',
+            '<a class="goody-button dark" data-track="book" href="https://calendly.com/goodypcng/live-walkthrough?utm_source=landing&utm_content=today" target="_blank" rel="noreferrer">Today</a>',
+            '<a class="goody-button" data-track="book" href="https://calendly.com/goodypcng/live-walkthrough?utm_source=landing&utm_content=tomorrow" target="_blank" rel="noreferrer">Tomorrow</a>',
+            '<a class="goody-button" data-track="book" href="https://calendly.com/goodypcng/live-walkthrough?utm_source=landing&utm_content=this-week" target="_blank" rel="noreferrer">This Week</a>',
+            '</div>',
+            '</article>',
+            '<article class="goody-card">',
+            '<h4>After Payment</h4>',
+            '<p>1. Activation in minutes</p>',
+            '<p>2. Guided setup + import</p>',
+            '<p>3. Team onboarding + go-live check</p>',
+            '</article>',
+            '<article class="goody-card">',
+            '<h4>Top Objections Covered</h4>',
+            '<p>Offline? Yes, fully supported.</p>',
+            '<p>Data migration? Assisted import flow.</p>',
+            '<p>Staff learning curve? Structured onboarding.</p>',
+            '</article>',
+            '</div>',
+
+            '<div class="goody-grid cols-3" style="margin-top:12px;">',
+            '<article class="goody-card">',
+            '<h4>Switch Checklist</h4>',
+            '<p>Download the replacement checklist before moving from your old POS.</p>',
+            '<button id="goody-download-checklist" class="goody-button" type="button" data-track="checklist" style="margin-top:10px;">Download Checklist</button>',
+            '</article>',
+            '<article class="goody-card">',
+            '<h4>WhatsApp Direct</h4>',
+            '<p>Start a conversion-focused message in one tap.</p>',
+            '<a class="goody-button primary" data-track="whatsapp" href="https://wa.me/?text=Hi%20Goody%20POS%2C%20I%20want%20setup%20for%20my%20store.%20Can%20we%20start%20with%20the%20%2465%20launch%20offer%3F" target="_blank" rel="noreferrer" style="margin-top:10px;">Chat on WhatsApp</a>',
+            '</article>',
+            '<article class="goody-card">',
+            '<h4>Primary Actions</h4>',
+            '<div class="goody-grid" style="margin-top:10px;">',
+            '<a class="goody-button dark" data-track="demo" href="https://goodypos.vercel.app/login" target="_blank" rel="noreferrer">Open Live Demo</a>',
+            '<a class="goody-button" data-track="book" href="https://calendly.com/goodypcng/live-walkthrough" target="_blank" rel="noreferrer">Book Walkthrough</a>',
+            '</div>',
+            '</article>',
+            '</div>'
+          ].join('');
+
+          if (targetFooter) {
+            main.insertBefore(section, targetFooter);
+          } else {
+            main.appendChild(section);
+          }
+
+          var panel = document.createElement('aside');
+          panel.className = 'goody-analytics';
+          panel.id = 'goody-analytics';
+          panel.innerHTML = [
+            '<p>Conversion Tracker</p>',
+            '<ul>',
+            '<li>Demo: <span id="ga-demo">0</span></li>',
+            '<li>Book: <span id="ga-book">0</span></li>',
+            '<li>WhatsApp: <span id="ga-whatsapp">0</span></li>',
+            '<li>Pricing: <span id="ga-pricing">0</span></li>',
+            '<li>Checklist: <span id="ga-checklist">0</span></li>',
+            '</ul>'
+          ].join('');
+          document.body.appendChild(panel);
+        }
+
+        function loadAnalytics() {
+          try {
+            return JSON.parse(localStorage.getItem(analyticsKey) || '{}');
+          } catch (_error) {
+            return {};
+          }
+        }
+
+        function saveAnalytics(state) {
+          localStorage.setItem(analyticsKey, JSON.stringify(state));
+        }
+
+        function renderAnalytics() {
+          var state = loadAnalytics();
+          var keys = ['demo', 'book', 'whatsapp', 'pricing', 'checklist'];
+          keys.forEach(function (key) {
+            var el = document.getElementById('ga-' + key);
+            if (el) {
+              el.textContent = String(state[key] || 0);
+            }
+          });
+        }
+
+        function track(type) {
+          var state = loadAnalytics();
+          state[type] = (state[type] || 0) + 1;
+          saveAnalytics(state);
+          renderAnalytics();
+        }
+
+        function setupTracking() {
+          document.addEventListener('click', function (event) {
+            var el = event.target && event.target.closest ? event.target.closest('[data-track], a, button, .goody-pricing-tag') : null;
+            if (!el) return;
+
+            if (el.classList && el.classList.contains('goody-pricing-tag')) {
+              track('pricing');
+              return;
+            }
+
+            var explicit = el.getAttribute && el.getAttribute('data-track');
+            if (explicit) {
+              track(explicit);
+              return;
+            }
+
+            if (el.matches && el.matches('a[href*="goodypos.vercel.app/login"]')) track('demo');
+            if (el.matches && el.matches('a[href*="calendly.com"]')) track('book');
+            if (el.matches && el.matches('a[href*="wa.me"], a[href*="whatsapp"]')) track('whatsapp');
+            if (el.id === 'goody-download-checklist') track('checklist');
+          }, true);
+        }
+
+        function setupROICalculator() {
+          var tx = document.getElementById('goody-roi-transactions');
+          var basket = document.getElementById('goody-roi-basket');
+          var output = document.getElementById('goody-roi-output');
+          if (!tx || !basket || !output) return;
+
+          var compute = function () {
+            var t = Math.max(1, Number(tx.value) || 0);
+            var b = Math.max(1, Number(basket.value) || 0);
+            var monthlyHoursSaved = ((t * 2.58 * 30) / 60);
+            var monthlyRevenueLift = (t * b * 30 * 0.06);
+            output.textContent = 'Estimated monthly value: ' + Math.round(monthlyHoursSaved) + ' staff-hours saved and about $' + Math.round(monthlyRevenueLift).toLocaleString() + ' potential revenue lift.';
+          };
+
+          tx.addEventListener('input', compute);
+          basket.addEventListener('input', compute);
+          compute();
+        }
+
+        function setupStorePaths() {
+          var buttons = document.querySelectorAll('[data-store-path]');
+          if (!buttons.length) return;
+          var note = document.getElementById('goody-path-note');
+
+          var presets = {
+            supermarket: { query: 'inventory', label: 'Supermarket path selected: inventory and transfer controls highlighted.' },
+            gadget: { query: 'smart retail', label: 'Gadget store path selected: smart retail + approval safeguards highlighted.' },
+            pharmacy: { query: 'barcode', label: 'Pharmacy path selected: barcode, expiry-aware stock and quick checkout highlighted.' },
+            fashion: { query: 'customers', label: 'Fashion path selected: customer history and repeat-sale tools highlighted.' }
+          };
+
+          buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+              var key = button.getAttribute('data-store-path');
+              var preset = presets[key];
+              if (!preset) return;
+
+              var search = document.getElementById('feature-search');
+              if (search) {
+                search.value = preset.query;
+                search.dispatchEvent(new Event('input', { bubbles: true }));
+              }
+
+              if (note) note.textContent = preset.label;
+              var target = document.getElementById('features');
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+          });
+        }
+
+        function setupChecklistDownload() {
+          var btn = document.getElementById('goody-download-checklist');
+          if (!btn) return;
+
+          btn.addEventListener('click', function () {
+            var checklist = [
+              'Goody POS Switch Checklist',
+              '',
+              '- Export product catalog from current system',
+              '- Confirm staff role list and permission levels',
+              '- Prepare payment method mapping',
+              '- Validate printer and barcode setup',
+              '- Set onboarding date and first-week support owner',
+              '- Run demo walkthrough before go-live'
+            ].join('\n');
+
+            var blob = new Blob([checklist], { type: 'text/plain' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'goody-pos-switch-checklist.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          });
+        }
+
+        function startOfferCountdown() {
+          var el = document.getElementById('goody-offer-countdown');
+          if (!el) return;
+
+          var tick = function () {
+            var diff = Math.max(0, offerDeadline - Date.now());
+            var d = Math.floor(diff / (24 * 60 * 60 * 1000));
+            var h = Math.floor((diff % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+            var m = Math.floor((diff % (60 * 60 * 1000)) / (60 * 1000));
+            el.textContent = 'Offer ends in ' + d + 'd ' + h + 'h ' + m + 'm';
+          };
+
+          tick();
+          setInterval(tick, 60000);
+        }
+
+        ready(function () {
+          insertEnhancements();
+          setupTracking();
+          renderAnalytics();
+          setupROICalculator();
+          setupStorePaths();
+          setupChecklistDownload();
+          startOfferCountdown();
+        });
       })();
     </script>
   </body>
