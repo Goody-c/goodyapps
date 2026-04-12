@@ -6,9 +6,70 @@
     <title>Goody POS - Landing</title>
     <script type="module" crossorigin src="/goodyapps/assets/index-CHK_xnwX.js?v=20260412a"></script>
     <link rel="stylesheet" crossorigin href="/goodyapps/assets/index-B8lxjJ8G.css?v=20260412a">
+    <style>
+      .goody-pricing-tag {
+        position: fixed;
+        right: 12px;
+        bottom: 14px;
+        z-index: 90;
+        width: min(320px, calc(100vw - 24px));
+        border-radius: 16px;
+        border: 1px solid rgba(251, 191, 36, 0.45);
+        background: linear-gradient(140deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.95));
+        color: #ffffff;
+        box-shadow: 0 20px 40px -26px rgba(2, 6, 23, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .goody-pricing-tag__inner {
+        padding: 12px 14px;
+      }
+
+      .goody-pricing-tag__eyebrow {
+        margin: 0;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fbbf24;
+      }
+
+      .goody-pricing-tag__line {
+        margin: 6px 0 0;
+        font-size: 13px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      .goody-pricing-tag__line strong {
+        color: #fde68a;
+        font-size: 15px;
+      }
+
+      .goody-pricing-tag__note {
+        margin: 8px 0 0;
+        font-size: 11px;
+        line-height: 1.35;
+        color: #d1d5db;
+      }
+
+      @media (max-width: 640px) {
+        .goody-pricing-tag {
+          bottom: 84px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <aside class="goody-pricing-tag" aria-label="Pricing tag">
+      <div class="goody-pricing-tag__inner">
+        <p class="goody-pricing-tag__eyebrow">Pricing</p>
+        <p class="goody-pricing-tag__line">Standard License: <strong>$100</strong></p>
+        <p class="goody-pricing-tag__line">Launch Offer: <strong>$65</strong> for first month</p>
+        <p class="goody-pricing-tag__note">Limited-time starter pricing for new stores.</p>
+      </div>
+    </aside>
     <script>
       (function () {
         var projectBase = '/goodyapps/';
