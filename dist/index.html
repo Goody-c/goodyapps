@@ -243,6 +243,65 @@
           display: none;
         }
       }
+
+      .goody-hero-price-banner {
+        margin: 16px 0 14px;
+        border-radius: 20px;
+        border: 1px solid rgba(251, 191, 36, 0.45);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #7f1d1d 100%);
+        color: #fff;
+        padding: 18px 18px 16px;
+        box-shadow: 0 24px 45px -28px rgba(15, 23, 42, 0.85);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .goody-hero-price-banner::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 85% 20%, rgba(251, 191, 36, 0.26), transparent 40%);
+        pointer-events: none;
+      }
+
+      .goody-hero-price-banner p {
+        margin: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .goody-hero-price-banner__eyebrow {
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fde68a;
+      }
+
+      .goody-hero-price-banner__headline {
+        margin-top: 8px !important;
+        font-size: 30px;
+        line-height: 1.05;
+        font-weight: 900;
+        letter-spacing: -0.01em;
+      }
+
+      .goody-hero-price-banner__headline strong {
+        color: #fef08a;
+      }
+
+      .goody-hero-price-banner__sub {
+        margin-top: 8px !important;
+        font-size: 13px;
+        font-weight: 700;
+        color: #e2e8f0;
+      }
+
+      @media (max-width: 640px) {
+        .goody-hero-price-banner__headline {
+          font-size: 24px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -432,6 +491,35 @@
           return true;
         }
 
+        function injectPriceHeroBanner() {
+          if (document.getElementById('goody-hero-price-banner')) {
+            return true;
+          }
+
+          var heroTitle = document.querySelector('h1');
+          if (!heroTitle || !heroTitle.parentElement) {
+            return false;
+          }
+
+          var banner = document.createElement('div');
+          banner.id = 'goody-hero-price-banner';
+          banner.className = 'goody-hero-price-banner';
+          banner.innerHTML = [
+            '<p class="goody-hero-price-banner__eyebrow">Limited Launch Pricing</p>',
+            '<p class="goody-hero-price-banner__headline"><strong>$100</strong> Standard License • <strong>$65</strong> First Month Offer</p>',
+            '<p class="goody-hero-price-banner__sub">Start at $65 this month, then continue at the full $100 license value.</p>'
+          ].join('');
+
+          var targetPara = heroTitle.parentElement.querySelector('p');
+          if (targetPara) {
+            targetPara.insertAdjacentElement('afterend', banner);
+          } else {
+            heroTitle.insertAdjacentElement('afterend', banner);
+          }
+
+          return true;
+        }
+
         function loadAnalytics() {
           try {
             return JSON.parse(localStorage.getItem(analyticsKey) || '{}');
@@ -585,7 +673,8 @@
           var interval = setInterval(function () {
             attempts += 1;
             var mounted = insertEnhancements();
-            if (!mounted && attempts < maxAttempts) {
+            var bannerMounted = injectPriceHeroBanner();
+            if ((!mounted || !bannerMounted) && attempts < maxAttempts) {
               return;
             }
 
