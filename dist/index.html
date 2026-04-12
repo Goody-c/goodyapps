@@ -321,7 +321,7 @@
         function insertEnhancements() {
           var main = document.querySelector('main');
           if (!main || document.getElementById('goody-enhancements')) {
-            return;
+            return Boolean(document.getElementById('goody-enhancements'));
           }
 
           var targetFooter = main.querySelector('footer');
@@ -425,7 +425,11 @@
             '<li>Checklist: <span id="ga-checklist">0</span></li>',
             '</ul>'
           ].join('');
-          document.body.appendChild(panel);
+          if (!document.getElementById('goody-analytics')) {
+            document.body.appendChild(panel);
+          }
+
+          return true;
         }
 
         function loadAnalytics() {
@@ -576,13 +580,27 @@
         }
 
         ready(function () {
-          insertEnhancements();
-          setupTracking();
-          renderAnalytics();
-          setupROICalculator();
-          setupStorePaths();
-          setupChecklistDownload();
-          startOfferCountdown();
+          var attempts = 0;
+          var maxAttempts = 60;
+          var interval = setInterval(function () {
+            attempts += 1;
+            var mounted = insertEnhancements();
+            if (!mounted && attempts < maxAttempts) {
+              return;
+            }
+
+            clearInterval(interval);
+            if (!mounted) {
+              return;
+            }
+
+            setupTracking();
+            renderAnalytics();
+            setupROICalculator();
+            setupStorePaths();
+            setupChecklistDownload();
+            startOfferCountdown();
+          }, 250);
         });
       })();
     </script>
