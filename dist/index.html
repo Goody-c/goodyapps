@@ -13,25 +13,49 @@
       (function () {
         var projectBase = '/goodyapps/';
 
-        function patchHomeLink() {
-          var homeLink = document.querySelector('a[aria-label="Go to home"]');
+        function routeToProjectHome(event) {
+          var target = event.target;
+          if (!target || !target.closest) return;
+
+          var homeLink = target.closest('a[aria-label="Go to home"]');
           if (!homeLink) return;
 
-          homeLink.setAttribute('href', projectBase);
-          homeLink.addEventListener('click', function (event) {
-            event.preventDefault();
-            if (window.location.pathname.indexOf(projectBase) === 0) {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              return;
-            }
-            window.location.assign(projectBase);
+          event.preventDefault();
+          if (window.location.pathname.indexOf(projectBase) === 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+          }
+          window.location.assign(projectBase);
+        }
+
+        function patchHomeLinks() {
+          var links = document.querySelectorAll('a[aria-label="Go to home"]');
+          if (!links.length) return;
+
+          links.forEach(function (link) {
+            link.setAttribute('href', projectBase);
           });
         }
 
+        function setupObservers() {
+          var root = document.getElementById('root');
+          if (!root || typeof MutationObserver === 'undefined') return;
+
+          var observer = new MutationObserver(function () {
+            patchHomeLinks();
+          });
+
+          observer.observe(root, { childList: true, subtree: true });
+        }
+
+        document.addEventListener('click', routeToProjectHome, true);
+        patchHomeLinks();
+        setupObservers();
+
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', patchHomeLink);
+          document.addEventListener('DOMContentLoaded', patchHomeLinks);
         } else {
-          patchHomeLink();
+          patchHomeLinks();
         }
       })();
     </script>
