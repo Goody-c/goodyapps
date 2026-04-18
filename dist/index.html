@@ -100,8 +100,8 @@
       :root,
       html,
       body {
-        color-scheme: dark !important;
-        background: linear-gradient(160deg, #000000 0%, #021a0f 35%, #032b14 60%, #041f0a 100%) !important;
+        color-scheme: light !important;
+        background: linear-gradient(135deg, #059669 0%, #22c55e 50%, #2dd4bf 100%) fixed !important;
         min-height: 100%;
       }
 
@@ -114,16 +114,16 @@
       }
 
       /* ===== Dark Theme Overrides ===== */
-      .bg-white { background-color: #040f08 !important; }
-      .bg-slate-50 { background-color: #020c06 !important; }
-      .bg-slate-100 { background-color: #071a0e !important; }
-      .text-slate-900 { color: #ffffff !important; }
-      .text-slate-800 { color: #f1f5f9 !important; }
-      .text-slate-700 { color: #e2e8f0 !important; }
-      .text-slate-600 { color: #94a3b8 !important; }
-      .text-slate-500 { color: #64748b !important; }
-      .border-slate-200 { border-color: #0d3320 !important; }
-      .border-slate-300 { border-color: #174d2e !important; }
+      .bg-white { background-color: rgba(255,255,255,0.25) !important; }
+      .bg-slate-50 { background-color: rgba(255,255,255,0.15) !important; }
+      .bg-slate-100 { background-color: rgba(255,255,255,0.2) !important; }
+      .text-slate-900 { color: #011a10 !important; }
+      .text-slate-800 { color: #022c1a !important; }
+      .text-slate-700 { color: #034a2b !important; }
+      .text-slate-600 { color: #025e36 !important; }
+      .text-slate-500 { color: #047a46 !important; }
+      .border-slate-200 { border-color: rgba(0,0,0,0.15) !important; }
+      .border-slate-300 { border-color: rgba(0,0,0,0.2) !important; }
       .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(56,189,248,0.18) !important; }
       [data-reveal-card] { background-color: #040f08 !important; border-color: #0d3320 !important; }
       [data-reveal-card]:hover { box-shadow: 0 28px 55px -28px rgba(56,189,248,0.25) !important; }
@@ -135,46 +135,46 @@
       .bg-orange-50, .bg-emerald-50, .bg-cyan-50, .bg-sky-50,
       .bg-emerald-100, .bg-orange-100, .bg-cyan-100, .bg-sky-100,
       .bg-green-50, .bg-green-100, .bg-teal-50, .bg-teal-100 {
-        background-color: #040f08 !important;
+        background-color: rgba(255,255,255,0.2) !important;
       }
-      .bg-white\/70, [class*="bg-white/"] { background-color: rgba(4,15,8,0.8) !important; }
+      .bg-white\/70, [class*="bg-white/"] { background-color: rgba(255,255,255,0.25) !important; }
       /* Table grid separator line */
-      .bg-slate-300\/70, [class*="bg-slate-300"] { background-color: #0d3320 !important; }
-      /* Table cell text — force white/light */
+      .bg-slate-300\/70, [class*="bg-slate-300"] { background-color: rgba(0,0,0,0.15) !important; }
+      /* Table cell text */
       [class*="text-orange-"], [class*="text-emerald-"],
       [class*="text-cyan-"], [class*="text-green-"],
       [class*="text-teal-"], [class*="text-sky-"] {
-        color: #e2e8f0 !important;
+        color: #011a10 !important;
       }
-      /* Header row text (Capability / Goody POS / Typical POS) */
+      /* Header row text */
       .text-orange-800, .text-emerald-800, .text-cyan-800,
       .text-orange-700, .text-emerald-700, .text-cyan-700 {
-        color: #ffffff !important;
+        color: #011a10 !important;
       }
       /* Borders */
-      .border-cyan-200, .border-orange-200, .border-emerald-200 { border-color: #0d3320 !important; }
+      .border-cyan-200, .border-orange-200, .border-emerald-200 { border-color: rgba(0,0,0,0.15) !important; }
       /* Table wrapper */
-      [class*="overflow-x-auto"][class*="bg-white"] { background-color: #040f08 !important; }
+      [class*="overflow-x-auto"][class*="bg-white"] { background-color: rgba(255,255,255,0.2) !important; }
       /* Outer wrapper gradient  */
       [class*="from-orange-200"], [class*="via-white"] { background: transparent !important; }
       /* Eyebrow labels */
-      .text-orange-700 { color: #6ee7b7 !important; }
-      .text-cyan-800 { color: #93c5fd !important; }
+      .text-orange-700 { color: #011a10 !important; }
+      .text-cyan-800 { color: #011a10 !important; }
       /* progress/bar fill bg changes */
-      [class*="bg-slate-100"][class*="rounded"] { background-color: #071a0e !important; }
+      [class*="bg-slate-100"][class*="rounded"] { background-color: rgba(255,255,255,0.2) !important; }
       /* CTA links */
-      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #38bdf8 !important; }
+      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #011a10 !important; }
 
-      /* ===== White body text everywhere ===== */
-      #root p { color: #cbd5e1; }
-      #root span { color: #cbd5e1; }
-      #root li { color: #cbd5e1; }
-      #root strong { color: #ffffff; }
-      #root label { color: #94a3b8; }
+      /* ===== Body text on bright green bg ===== */
+      #root p { color: #022c1a; }
+      #root span { color: #022c1a; }
+      #root li { color: #022c1a; }
+      #root strong { color: #011a10; }
+      #root label { color: #034a2b; }
 
-      /* ===== Blue gradient headings ===== */
+      /* ===== Dark headings on bright green bg ===== */
       #root h1, #root h2, #root h3 {
-        background: linear-gradient(90deg, #38bdf8 0%, #818cf8 55%, #c084fc 100%);
+        background: linear-gradient(90deg, #011a10 0%, #022c1a 60%, #023d25 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -192,15 +192,15 @@
         -webkit-text-fill-color: #ffffff !important;
         color: #ffffff !important;
       }
-      /* Feature card titles — blue gradient */
+      /* Feature card titles — dark gradient on bright green */
       [data-reveal-card] h3 {
-        background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+        background: linear-gradient(90deg, #011a10, #034a2b) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         background-clip: text !important;
       }
       /* Stat numbers */
-      #root [class*="font-black"] { color: #ffffff; }
+      #root [class*="font-black"] { color: #011a10; }
 
       .goody-pricing-tag {
         position: fixed;
