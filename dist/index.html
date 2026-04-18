@@ -113,33 +113,42 @@
         background: transparent !important;
       }
 
-      /* ===== Dark Theme Overrides ===== */
-      .bg-white { background-color: rgba(255,255,255,0.25) !important; }
-      .bg-slate-50 { background-color: rgba(255,255,255,0.15) !important; }
-      .bg-slate-100 { background-color: rgba(255,255,255,0.2) !important; }
+      /* ===== Purple box overrides ===== */
+      .bg-white { background-color: #5b21b6 !important; }
+      .bg-slate-50 { background-color: #4c1d95 !important; }
+      .bg-slate-100 { background-color: #5b21b6 !important; }
       .text-slate-900 { color: #ffffff !important; }
       .text-slate-800 { color: #f1f5f9 !important; }
       .text-slate-700 { color: #e2e8f0 !important; }
       .text-slate-600 { color: #cbd5e1 !important; }
       .text-slate-500 { color: #94a3b8 !important; }
-      .border-slate-200 { border-color: rgba(0,0,0,0.15) !important; }
-      .border-slate-300 { border-color: rgba(0,0,0,0.2) !important; }
+      .border-slate-200 { border-color: #7c3aed !important; }
+      .border-slate-300 { border-color: #8b5cf6 !important; }
       .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(56,189,248,0.18) !important; }
-      [data-reveal-card] { background-color: #040f08 !important; border-color: #0d3320 !important; }
+      [data-reveal-card] { background-color: #5b21b6 !important; border-color: #7c3aed !important; }
       [data-reveal-card]:hover { box-shadow: 0 28px 55px -28px rgba(56,189,248,0.25) !important; }
       /* Nav / header */
-      nav, header { background-color: #020c06 !important; border-color: #0d3320 !important; }
-      .from-slate-50, [class*="from-slate-50"] { --tw-gradient-from: #080808 !important; }
-      [class*="from-white"] { --tw-gradient-from: #0f0f0f !important; }
-      /* ===== Comparison table dark overrides ===== */
+      nav, header { background-color: #3b0764 !important; border-color: #7c3aed !important; }
+      .from-slate-50, [class*="from-slate-50"] { --tw-gradient-from: #4c1d95 !important; }
+      [class*="from-white"] { --tw-gradient-from: #5b21b6 !important; }
+      /* Dark section backgrounds (testimonials, CTA, etc.) → purple */
+      .bg-slate-900 { background-color: #2e1065 !important; }
+      .bg-slate-800 { background-color: #3b0764 !important; }
+      .bg-slate-700 { background-color: #4c1d95 !important; }
+      [class*="bg-slate-9"], [class*="bg-zinc-9"], [class*="bg-gray-9"],
+      [class*="bg-neutral-9"] { background-color: #2e1065 !important; }
+      /* Input fields */
+      input, textarea, select { background-color: #5b21b6 !important; color: #ffffff !important; border-color: #7c3aed !important; }
+      input::placeholder, textarea::placeholder { color: #c4b5fd !important; }
+      /* ===== Comparison table purple overrides ===== */
       .bg-orange-50, .bg-emerald-50, .bg-cyan-50, .bg-sky-50,
       .bg-emerald-100, .bg-orange-100, .bg-cyan-100, .bg-sky-100,
       .bg-green-50, .bg-green-100, .bg-teal-50, .bg-teal-100 {
-        background-color: rgba(255,255,255,0.2) !important;
+        background-color: #5b21b6 !important;
       }
-      .bg-white\/70, [class*="bg-white/"] { background-color: rgba(255,255,255,0.25) !important; }
+      .bg-white/70, [class*="bg-white/"] { background-color: #5b21b6 !important; }
       /* Table grid separator line */
-      .bg-slate-300\/70, [class*="bg-slate-300"] { background-color: rgba(0,0,0,0.15) !important; }
+      .bg-slate-300/70, [class*="bg-slate-300"] { background-color: #7c3aed !important; }
       /* Table cell text */
       [class*="text-orange-"], [class*="text-emerald-"],
       [class*="text-cyan-"], [class*="text-green-"],
@@ -152,16 +161,16 @@
         color: #ffffff !important;
       }
       /* Borders */
-      .border-cyan-200, .border-orange-200, .border-emerald-200 { border-color: rgba(0,0,0,0.15) !important; }
+      .border-cyan-200, .border-orange-200, .border-emerald-200 { border-color: #7c3aed !important; }
       /* Table wrapper */
-      [class*="overflow-x-auto"][class*="bg-white"] { background-color: rgba(255,255,255,0.2) !important; }
+      [class*="overflow-x-auto"][class*="bg-white"] { background-color: #4c1d95 !important; }
       /* Outer wrapper gradient  */
       [class*="from-orange-200"], [class*="via-white"] { background: transparent !important; }
       /* Eyebrow labels */
       .text-orange-700 { color: #ffffff !important; }
       .text-cyan-800 { color: #ffffff !important; }
       /* progress/bar fill bg changes */
-      [class*="bg-slate-100"][class*="rounded"] { background-color: rgba(255,255,255,0.2) !important; }
+      [class*="bg-slate-100"][class*="rounded"] { background-color: #5b21b6 !important; }
       /* CTA links */
       a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #ffffff !important; }
 
