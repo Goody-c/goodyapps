@@ -131,8 +131,35 @@
       nav, header { background-color: #020c06 !important; border-color: #0d3320 !important; }
       .from-slate-50, [class*="from-slate-50"] { --tw-gradient-from: #080808 !important; }
       [class*="from-white"] { --tw-gradient-from: #0f0f0f !important; }
-      /* feature group tabs / search */
-      .bg-white.text-slate-600 { background-color: #1e293b !important; color: #94a3b8 !important; }
+      /* ===== Comparison table dark overrides ===== */
+      .bg-orange-50, .bg-emerald-50, .bg-cyan-50, .bg-sky-50,
+      .bg-emerald-100, .bg-orange-100, .bg-cyan-100, .bg-sky-100,
+      .bg-green-50, .bg-green-100, .bg-teal-50, .bg-teal-100 {
+        background-color: #040f08 !important;
+      }
+      .bg-white\/70, [class*="bg-white/"] { background-color: rgba(4,15,8,0.8) !important; }
+      /* Table grid separator line */
+      .bg-slate-300\/70, [class*="bg-slate-300"] { background-color: #0d3320 !important; }
+      /* Table cell text — force white/light */
+      [class*="text-orange-"], [class*="text-emerald-"],
+      [class*="text-cyan-"], [class*="text-green-"],
+      [class*="text-teal-"], [class*="text-sky-"] {
+        color: #e2e8f0 !important;
+      }
+      /* Header row text (Capability / Goody POS / Typical POS) */
+      .text-orange-800, .text-emerald-800, .text-cyan-800,
+      .text-orange-700, .text-emerald-700, .text-cyan-700 {
+        color: #ffffff !important;
+      }
+      /* Borders */
+      .border-cyan-200, .border-orange-200, .border-emerald-200 { border-color: #0d3320 !important; }
+      /* Table wrapper */
+      [class*="overflow-x-auto"][class*="bg-white"] { background-color: #040f08 !important; }
+      /* Outer wrapper gradient  */
+      [class*="from-orange-200"], [class*="via-white"] { background: transparent !important; }
+      /* Eyebrow labels */
+      .text-orange-700 { color: #6ee7b7 !important; }
+      .text-cyan-800 { color: #93c5fd !important; }
       /* progress/bar fill bg changes */
       [class*="bg-slate-100"][class*="rounded"] { background-color: #071a0e !important; }
       /* CTA links */
