@@ -101,8 +101,16 @@
       html,
       body {
         color-scheme: dark !important;
-        background: linear-gradient(160deg, #000000 0%, #021a0f 35%, #032b14 60%, #041f0a 100%) fixed !important;
+        background: linear-gradient(160deg, #000000 0%, #021a0f 35%, #032b14 60%, #041f0a 100%) !important;
         min-height: 100%;
+      }
+
+      /* Force the React root wrapper to be transparent so body gradient shows */
+      #root > div,
+      .force-light-landing,
+      [class*="bg-[#fbf9f4]"],
+      [class*="bg-\\[\\#fbf9f4\\]"] {
+        background: transparent !important;
       }
 
       /* ===== Dark Theme Overrides ===== */
