@@ -115,21 +115,56 @@
       .text-slate-500 { color: #64748b !important; }
       .border-slate-200 { border-color: #1e293b !important; }
       .border-slate-300 { border-color: #374151 !important; }
-      .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(138,79,255,0.25) !important; }
+      .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(56,189,248,0.18) !important; }
       [data-reveal-card] { background-color: #0f0f0f !important; border-color: #1e293b !important; }
-      [data-reveal-card]:hover { box-shadow: 0 28px 55px -28px rgba(138,79,255,0.35) !important; }
+      [data-reveal-card]:hover { box-shadow: 0 28px 55px -28px rgba(56,189,248,0.25) !important; }
       /* Nav / header */
       nav, header { background-color: #000000 !important; border-color: #1e293b !important; }
       .from-slate-50, [class*="from-slate-50"] { --tw-gradient-from: #080808 !important; }
       [class*="from-white"] { --tw-gradient-from: #0f0f0f !important; }
       /* feature group tabs / search */
       .bg-white.text-slate-600 { background-color: #1e293b !important; color: #94a3b8 !important; }
-      /* progress/bar fill stays purple, bg changes */
+      /* progress/bar fill bg changes */
       [class*="bg-slate-100"][class*="rounded"] { background-color: #1e293b !important; }
-      /* CTA links that use red - switch to purple */
-      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #a78bfa !important; }
-      /* stat number highlights */
-      [class*="text-slate-900"][class*="font-black"] { color: #ffffff !important; }
+      /* CTA links */
+      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #38bdf8 !important; }
+
+      /* ===== White body text everywhere ===== */
+      #root p { color: #cbd5e1; }
+      #root span { color: #cbd5e1; }
+      #root li { color: #cbd5e1; }
+      #root strong { color: #ffffff; }
+      #root label { color: #94a3b8; }
+
+      /* ===== Blue gradient headings ===== */
+      #root h1, #root h2, #root h3 {
+        background: linear-gradient(90deg, #38bdf8 0%, #818cf8 55%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      /* Section group header (already on coloured bg) — keep white */
+      [class*="from-red"] h2,
+      [class*="from-orange"] h2,
+      [class*="from-emerald"] h2,
+      [class*="from-blue"] h2,
+      [class*="from-violet"] h2,
+      [class*="from-slate"] h2,
+      [class*="from-sky"] h2,
+      [class*="from-amber"] h2 {
+        background: none !important;
+        -webkit-text-fill-color: #ffffff !important;
+        color: #ffffff !important;
+      }
+      /* Feature card titles — blue gradient */
+      [data-reveal-card] h3 {
+        background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+      }
+      /* Stat numbers */
+      #root [class*="font-black"] { color: #ffffff; }
 
       .goody-pricing-tag {
         position: fixed;
@@ -233,7 +268,10 @@
         font-size: 14px;
         letter-spacing: 0.04em;
         text-transform: uppercase;
-        color: #a78bfa;
+        background: linear-gradient(90deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .goody-card p {
