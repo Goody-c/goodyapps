@@ -101,31 +101,32 @@
       html,
       body {
         color-scheme: dark !important;
-        background: #000000;
+        background: linear-gradient(160deg, #000000 0%, #021a0f 35%, #032b14 60%, #041f0a 100%) fixed !important;
+        min-height: 100%;
       }
 
       /* ===== Dark Theme Overrides ===== */
-      .bg-white { background-color: #0f0f0f !important; }
-      .bg-slate-50 { background-color: #080808 !important; }
-      .bg-slate-100 { background-color: #111827 !important; }
+      .bg-white { background-color: #040f08 !important; }
+      .bg-slate-50 { background-color: #020c06 !important; }
+      .bg-slate-100 { background-color: #071a0e !important; }
       .text-slate-900 { color: #ffffff !important; }
       .text-slate-800 { color: #f1f5f9 !important; }
       .text-slate-700 { color: #e2e8f0 !important; }
       .text-slate-600 { color: #94a3b8 !important; }
       .text-slate-500 { color: #64748b !important; }
-      .border-slate-200 { border-color: #1e293b !important; }
-      .border-slate-300 { border-color: #374151 !important; }
+      .border-slate-200 { border-color: #0d3320 !important; }
+      .border-slate-300 { border-color: #174d2e !important; }
       .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(56,189,248,0.18) !important; }
-      [data-reveal-card] { background-color: #0f0f0f !important; border-color: #1e293b !important; }
+      [data-reveal-card] { background-color: #040f08 !important; border-color: #0d3320 !important; }
       [data-reveal-card]:hover { box-shadow: 0 28px 55px -28px rgba(56,189,248,0.25) !important; }
       /* Nav / header */
-      nav, header { background-color: #000000 !important; border-color: #1e293b !important; }
+      nav, header { background-color: #020c06 !important; border-color: #0d3320 !important; }
       .from-slate-50, [class*="from-slate-50"] { --tw-gradient-from: #080808 !important; }
       [class*="from-white"] { --tw-gradient-from: #0f0f0f !important; }
       /* feature group tabs / search */
       .bg-white.text-slate-600 { background-color: #1e293b !important; color: #94a3b8 !important; }
       /* progress/bar fill bg changes */
-      [class*="bg-slate-100"][class*="rounded"] { background-color: #1e293b !important; }
+      [class*="bg-slate-100"][class*="rounded"] { background-color: #071a0e !important; }
       /* CTA links */
       a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #38bdf8 !important; }
 
@@ -220,10 +221,10 @@
 
       .goody-enhancements {
         margin: 48px 0 28px;
-        border: 1px solid #2d1a6e;
+        border: 1px solid #0d3320;
         border-radius: 24px;
-        background: linear-gradient(160deg, #0a0a0a, #0d0d1a 52%, #0f0a1e);
-        box-shadow: 0 20px 40px -34px rgba(138, 79, 255, 0.3);
+        background: linear-gradient(160deg, #040f08, #061a0d 52%, #040f08);
+        box-shadow: 0 20px 40px -34px rgba(0, 200, 100, 0.15);
         padding: 22px;
       }
 
@@ -257,8 +258,8 @@
       }
 
       .goody-card {
-        border: 1px solid #1e293b;
-        background: #0f0f0f;
+        border: 1px solid #0d3320;
+        background: #040f08;
         border-radius: 16px;
         padding: 14px;
       }
@@ -316,9 +317,9 @@
         font-weight: 900;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        border: 1px solid #374151;
+        border: 1px solid #174d2e;
         color: #e2e8f0;
-        background: #1e293b;
+        background: #071a0e;
       }
 
       .goody-button.primary {
@@ -342,13 +343,13 @@
 
       .goody-input {
         width: 100%;
-        border: 1px solid #374151;
+        border: 1px solid #0d3320;
         border-radius: 10px;
         padding: 10px;
         font-size: 14px;
         font-weight: 700;
         color: #e2e8f0;
-        background: #1e293b;
+        background: #071a0e;
       }
 
       .goody-analytics {
