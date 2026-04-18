@@ -49,7 +49,7 @@
       },
       "featureList": [
         "Inventory Management",
-        "Sales Reporting",
+        "Sales Reporting & Analytics",
         "Customer Management",
         "Staff Communication",
         "Repair Tracking",
@@ -57,14 +57,26 @@
         "Market Collections",
         "Pin Checkout",
         "USB Barcode Scanner",
-        "Offline Mode",
+        "Offline Mode (SQLite)",
+        "Online Mode (PostgreSQL)",
         "Handover Notes",
         "Staff Announcements",
         "Reservation Management",
-        "Analytics Dashboard"
+        "Analytics Dashboard",
+        "Stock Adjustments",
+        "Pro Forma Invoices",
+        "Purchase Orders & Suppliers",
+        "Expense Tracking",
+        "Vendor Payables",
+        "Consignment Items",
+        "Transaction Flags",
+        "Role-Based Access Control",
+        "Supermarket Mode",
+        "Gadget Store Mode",
+        "License Activation"
       ],
       "screenshot": "https://goody-c.github.io/goodyapps/landing-assets/features/pos-terminal.svg",
-      "softwareVersion": "1.0",
+      "softwareVersion": "1.6.0",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
@@ -412,18 +424,28 @@
 
         <h2>Key Features</h2>
         <ul>
-          <li><strong>Inventory Management</strong> – Track stock levels, low-stock alerts, and product history in real time.</li>
-          <li><strong>Sales Reporting &amp; Analytics</strong> – Daily, weekly, and monthly reports with revenue breakdowns.</li>
-          <li><strong>Customer Management</strong> – Build customer profiles, track purchase history, and manage loyalty.</li>
-          <li><strong>Staff Communication</strong> – In-app announcements, handover notes, and shift management.</li>
-          <li><strong>Repair Tracking</strong> – Log, track, and close repair jobs for electronics and gadget stores.</li>
-          <li><strong>Discount Codes</strong> – Create and manage promotional discounts at checkout.</li>
-          <li><strong>Market Collections</strong> – Organize products into market-ready collections for fast selection.</li>
+          <li><strong>Inventory Management</strong> – Track stock levels, low-stock alerts, product batches, expiry dates, and barcodes in real time.</li>
+          <li><strong>Sales Reporting &amp; Analytics</strong> – Daily, weekly, and monthly reports with revenue breakdowns, trends, and top-product insights.</li>
+          <li><strong>Customer Management</strong> – Build customer profiles, track purchase history, manage credit sales, and set payment due dates.</li>
+          <li><strong>Staff Communication</strong> – In-app announcements, handover notes, and shift management tools.</li>
+          <li><strong>Repair Tracking</strong> – Log, diagnose, track, and close repair jobs with a full status workflow (RECEIVED → DIAGNOSING → IN_REPAIR → READY → DELIVERED).</li>
+          <li><strong>Discount Codes</strong> – Create and manage percentage or flat-amount promotional discounts at checkout.</li>
+          <li><strong>Market Collections</strong> – Organize products into market-ready collections for fast bulk selection.</li>
           <li><strong>PIN Checkout</strong> – Secure, fast staff-facing checkout with PIN authentication.</li>
           <li><strong>USB Barcode Scanner</strong> – Plug-and-play barcode scanner support for rapid item lookup.</li>
-          <li><strong>Offline Mode</strong> – Full POS functionality without an internet connection.</li>
+          <li><strong>Offline Mode</strong> – Full POS functionality without an internet connection using local SQLite storage.</li>
+          <li><strong>Online Mode</strong> – Cloud-hosted PostgreSQL backend for multi-device and remote access.</li>
+          <li><strong>Stock Adjustments</strong> – Add, remove, write-off, or return stock with documented adjustment modes.</li>
+          <li><strong>Pro Forma Invoices</strong> – Generate and manage pro forma invoices with expiry controls.</li>
+          <li><strong>Purchase Orders &amp; Suppliers</strong> – Create purchase orders and manage supplier records.</li>
+          <li><strong>Expense Tracking</strong> – Record and categorise business expenses against revenue.</li>
+          <li><strong>Vendor Payables</strong> – Track consignment item payouts and vendor balances.</li>
+          <li><strong>Consignment Items</strong> – Manage consignment stock with condition grades (new, used, open box).</li>
+          <li><strong>Transaction Flags</strong> – Flag and annotate transactions for review or follow-up.</li>
           <li><strong>Reservation Management</strong> – Handle product reservations and pre-orders.</li>
-          <li><strong>Admin User Controls</strong> – Role-based access for owners, managers, and staff.</li>
+          <li><strong>Role-Based Access Control</strong> – Six staff roles: System Admin, Store Admin, Manager, Procurement, Accountant, and Staff.</li>
+          <li><strong>Supermarket Mode &amp; Gadget Store Mode</strong> – Switch store profiles to unlock the feature set that fits your business type.</li>
+          <li><strong>License Activation</strong> – Secure per-machine license enforcement (1 license = 1 device).</li>
         </ul>
 
         <h2>Pricing</h2>
