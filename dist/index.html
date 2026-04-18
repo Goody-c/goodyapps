@@ -113,15 +113,27 @@
         background: transparent !important;
       }
 
-      /* ===== Purple box overrides ===== */
-      .bg-white { background-color: #5b21b6 !important; }
-      .bg-slate-50 { background-color: #4c1d95 !important; }
-      .bg-slate-100 { background-color: #5b21b6 !important; }
-      .text-slate-900 { color: #ffffff !important; }
-      .text-slate-800 { color: #f1f5f9 !important; }
-      .text-slate-700 { color: #e2e8f0 !important; }
-      .text-slate-600 { color: #cbd5e1 !important; }
-      .text-slate-500 { color: #94a3b8 !important; }
+      /* ===== Purple box overrides (use #root ID for higher specificity than data-theme rules) ===== */
+      #root .bg-white { background-color: #5b21b6 !important; }
+      #root .bg-slate-50 { background-color: #4c1d95 !important; }
+      #root .bg-slate-100 { background-color: #5b21b6 !important; }
+      #root .bg-slate-200 { background-color: #4c1d95 !important; }
+      #root .bg-slate-800 { background-color: #3b0764 !important; }
+      #root .bg-slate-900 { background-color: #2e1065 !important; }
+      /* Also cover the bg-white/95 for nav */
+      #root [class*="bg-white/"] { background-color: rgba(91,33,182,0.95) !important; }
+      /* text overrides */
+      #root .text-slate-900,
+      :root[data-theme="dark"] .force-light-landing .text-slate-900 { color: #ffffff !important; }
+      #root .text-slate-800 { color: #f1f5f9 !important; }
+      #root .text-slate-700,
+      :root[data-theme="dark"] .force-light-landing .text-slate-700 { color: #e2e8f0 !important; }
+      #root .text-slate-600,
+      #root .text-slate-500,
+      #root .text-slate-400,
+      :root[data-theme="dark"] .force-light-landing .text-slate-600,
+      :root[data-theme="dark"] .force-light-landing .text-slate-500,
+      :root[data-theme="dark"] .force-light-landing .text-slate-400 { color: #c4b5fd !important; }
       .border-slate-200 { border-color: #7c3aed !important; }
       .border-slate-300 { border-color: #8b5cf6 !important; }
       .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(56,189,248,0.18) !important; }
