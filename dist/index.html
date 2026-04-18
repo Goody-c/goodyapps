@@ -117,11 +117,11 @@
       .bg-white { background-color: rgba(255,255,255,0.25) !important; }
       .bg-slate-50 { background-color: rgba(255,255,255,0.15) !important; }
       .bg-slate-100 { background-color: rgba(255,255,255,0.2) !important; }
-      .text-slate-900 { color: #011a10 !important; }
-      .text-slate-800 { color: #022c1a !important; }
-      .text-slate-700 { color: #034a2b !important; }
-      .text-slate-600 { color: #025e36 !important; }
-      .text-slate-500 { color: #047a46 !important; }
+      .text-slate-900 { color: #ffffff !important; }
+      .text-slate-800 { color: #f1f5f9 !important; }
+      .text-slate-700 { color: #e2e8f0 !important; }
+      .text-slate-600 { color: #cbd5e1 !important; }
+      .text-slate-500 { color: #94a3b8 !important; }
       .border-slate-200 { border-color: rgba(0,0,0,0.15) !important; }
       .border-slate-300 { border-color: rgba(0,0,0,0.2) !important; }
       .shadow-\[0_20px_45px_-30px_rgba\(15\,23\,42\,0\.35\)\] { box-shadow: 0 20px 45px -30px rgba(56,189,248,0.18) !important; }
@@ -144,12 +144,12 @@
       [class*="text-orange-"], [class*="text-emerald-"],
       [class*="text-cyan-"], [class*="text-green-"],
       [class*="text-teal-"], [class*="text-sky-"] {
-        color: #011a10 !important;
+        color: #ffffff !important;
       }
       /* Header row text */
       .text-orange-800, .text-emerald-800, .text-cyan-800,
       .text-orange-700, .text-emerald-700, .text-cyan-700 {
-        color: #011a10 !important;
+        color: #ffffff !important;
       }
       /* Borders */
       .border-cyan-200, .border-orange-200, .border-emerald-200 { border-color: rgba(0,0,0,0.15) !important; }
@@ -158,26 +158,25 @@
       /* Outer wrapper gradient  */
       [class*="from-orange-200"], [class*="via-white"] { background: transparent !important; }
       /* Eyebrow labels */
-      .text-orange-700 { color: #011a10 !important; }
-      .text-cyan-800 { color: #011a10 !important; }
+      .text-orange-700 { color: #ffffff !important; }
+      .text-cyan-800 { color: #ffffff !important; }
       /* progress/bar fill bg changes */
       [class*="bg-slate-100"][class*="rounded"] { background-color: rgba(255,255,255,0.2) !important; }
       /* CTA links */
-      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #011a10 !important; }
+      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #ffffff !important; }
 
-      /* ===== Body text on bright green bg ===== */
-      #root p { color: #022c1a; }
-      #root span { color: #022c1a; }
-      #root li { color: #022c1a; }
-      #root strong { color: #011a10; }
-      #root label { color: #034a2b; }
+      /* ===== White text everywhere ===== */
+      #root p { color: #ffffff; }
+      #root span { color: #ffffff; }
+      #root li { color: #ffffff; }
+      #root strong { color: #ffffff; }
+      #root label { color: #e2e8f0; }
 
-      /* ===== Dark headings on bright green bg ===== */
+      /* ===== White headings ===== */
       #root h1, #root h2, #root h3 {
-        background: linear-gradient(90deg, #011a10 0%, #022c1a 60%, #023d25 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        background: none !important;
+        -webkit-text-fill-color: #ffffff !important;
+        color: #ffffff !important;
       }
       /* Section group header (already on coloured bg) — keep white */
       [class*="from-red"] h2,
@@ -192,15 +191,14 @@
         -webkit-text-fill-color: #ffffff !important;
         color: #ffffff !important;
       }
-      /* Feature card titles — dark gradient on bright green */
+      /* Feature card titles — white */
       [data-reveal-card] h3 {
-        background: linear-gradient(90deg, #011a10, #034a2b) !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-        background-clip: text !important;
+        background: none !important;
+        -webkit-text-fill-color: #ffffff !important;
+        color: #ffffff !important;
       }
       /* Stat numbers */
-      #root [class*="font-black"] { color: #011a10; }
+      #root [class*="font-black"] { color: #ffffff; }
 
       .goody-pricing-tag {
         position: fixed;
