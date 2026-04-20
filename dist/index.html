@@ -127,6 +127,18 @@
         to   { opacity: 1; transform: translateY(0);   }
       }
 
+      /* Marquee scroll */
+      @keyframes goody-marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* Stats number count-up shimmer */
+      @keyframes goody-stat-shimmer {
+        0%   { background-position: -200% center; }
+        100% { background-position:  200% center; }
+      }
+
       /* ===== Base ===== */
       :root,
       html,
@@ -291,7 +303,89 @@
         color: var(--g-text) !important;
       }
 
-      /* ===== Amber / timer badges ===== */
+      /* ===== Hero radial glow behind headline ===== */
+      #root h1 {
+        position: relative;
+      }
+      #root h1::before {
+        content: '';
+        position: absolute;
+        inset: -60px -80px;
+        background: radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.13) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: -1;
+        border-radius: 50%;
+      }
+
+      /* ===== Stats numbers — emerald pop ===== */
+      .goody-stat-num {
+        display: block;
+        font-size: 52px;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #6ee7b7 0%, #10b981 60%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .goody-stat-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--g-text-mute);
+        margin-top: 4px;
+      }
+      .goody-stat-wrap {
+        text-align: center;
+        padding: 8px 0;
+      }
+
+      /* ===== Trusted-by marquee container ===== */
+      .goody-marquee-outer {
+        overflow: hidden;
+        position: relative;
+        mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+      }
+      .goody-marquee-track {
+        display: flex;
+        width: max-content;
+        animation: goody-marquee 28s linear infinite;
+      }
+      .goody-marquee-track:hover { animation-play-state: paused; }
+      .goody-marquee-item {
+        white-space: nowrap;
+        padding: 0 32px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--g-text-mute);
+      }
+      .goody-marquee-item::after {
+        content: '·';
+        margin-left: 32px;
+        color: var(--g-accent);
+        opacity: 0.6;
+      }
+
+      /* ===== Before / After metric colors ===== */
+      .goody-before-val { color: #f87171 !important; font-weight: 800 !important; }
+      .goody-after-val  { color: #6ee7b7 !important; font-weight: 800 !important; }
+
+      /* ===== Comparison table — Goody column highlight ===== */
+      .goody-col-goody {
+        background: rgba(16,185,129,0.07) !important;
+        border-left: 2px solid rgba(16,185,129,0.45) !important;
+        border-right: 2px solid rgba(16,185,129,0.45) !important;
+      }
+      .goody-col-goody * { color: var(--g-text) !important; }
+      .goody-col-typical * { color: var(--g-text-mute) !important; }
+
+      /* ===== Amber / timer badges =====
       #root .bg-amber-50     { background-color: #1c1a0d     !important; }
       #root .text-amber-800  { color: var(--g-amber)         !important; }
       #root .border-amber-200 { border-color: rgba(251,191,36,0.3) !important; }
@@ -1094,6 +1188,233 @@
             setupChecklistDownload();
             startOfferCountdown();
           }, 250);
+        });
+      })();
+    </script>
+    <script>
+      /* ===== Goody POS Visual Enhancements v3 ===== */
+      (function () {
+        function ready(fn) {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+          } else { fn(); }
+        }
+
+        /* ---- 1. Trusted-by marquee ---- */
+        function injectMarquee() {
+          if (document.getElementById('goody-marquee')) return true;
+          /* Find the trusted-by strip — look for a container that has 3+ brand-name spans in uppercase */
+          var candidates = document.querySelectorAll('section, div');
+          var strip = null;
+          for (var i = 0; i < candidates.length; i++) {
+            var el = candidates[i];
+            var text = el.innerText || '';
+            if (
+              text.indexOf('NORTHLANE') !== -1 ||
+              text.indexOf('URBANCART') !== -1 ||
+              text.indexOf('BLUESHELF') !== -1
+            ) {
+              /* Walk up to find the closest container that wraps just the brand list */
+              var found = el;
+              /* Prefer a direct child that is the brand list row */
+              var rows = el.querySelectorAll('div, p, span');
+              for (var r = 0; r < rows.length; r++) {
+                if ((rows[r].innerText || '').indexOf('NORTHLANE') !== -1) {
+                  found = rows[r]; break;
+                }
+              }
+              strip = found;
+              break;
+            }
+          }
+          if (!strip) return false;
+          /* Already wrapped? */
+          if (strip.closest('.goody-marquee-outer')) return true;
+
+          /* Collect brand names */
+          var brands = [];
+          var children = strip.childNodes;
+          for (var c = 0; c < children.length; c++) {
+            var t = (children[c].innerText || children[c].textContent || '').trim();
+            if (t.length > 1) brands.push(t);
+          }
+          if (!brands.length) {
+            var fullText = (strip.innerText || strip.textContent || '');
+            brands = fullText.split(/[·•\|\n]+/).map(function(s){ return s.trim(); }).filter(Boolean);
+          }
+          if (!brands.length) return false;
+
+          /* Build marquee — duplicate for seamless loop */
+          var allBrands = brands.concat(brands);
+          var outer = document.createElement('div');
+          outer.id = 'goody-marquee';
+          outer.className = 'goody-marquee-outer';
+          var track = document.createElement('div');
+          track.className = 'goody-marquee-track';
+          allBrands.forEach(function(b) {
+            var item = document.createElement('span');
+            item.className = 'goody-marquee-item';
+            item.textContent = b;
+            track.appendChild(item);
+          });
+          outer.appendChild(track);
+          strip.parentNode.insertBefore(outer, strip);
+          strip.style.display = 'none';
+          return true;
+        }
+
+        /* ---- 2. Stats numbers emerald pop ---- */
+        function styleStats() {
+          if (document.getElementById('goody-stats-styled')) return true;
+          /* Stats blocks: look for elements containing "30+" or "80+" or "Yes" as standalone prominent text */
+          var allEls = document.querySelectorAll('p, span, div, h2, h3, h4');
+          var statPatterns = [
+            { pattern: /^30\+$/, label: 'Business-Ready Modules' },
+            { pattern: /^80\+$/, label: 'Core Features' },
+            { pattern: /^Yes$/, label: 'Offline-Capable' },
+            { pattern: /^2$/, label: 'Built-In Business Modes' },
+            { pattern: /^6$/, label: 'Role-Based Access Levels' },
+            { pattern: /^60m$/, label: 'Demo Reset Interval' }
+          ];
+          var matched = 0;
+          for (var i = 0; i < allEls.length; i++) {
+            var el = allEls[i];
+            var txt = (el.innerText || el.textContent || '').trim();
+            for (var s = 0; s < statPatterns.length; s++) {
+              if (statPatterns[s].pattern.test(txt) && !el.classList.contains('goody-stat-num')) {
+                el.classList.add('goody-stat-num');
+                matched++;
+                break;
+              }
+            }
+          }
+          if (matched > 0) {
+            var marker = document.createElement('span');
+            marker.id = 'goody-stats-styled';
+            marker.style.display = 'none';
+            document.body.appendChild(marker);
+            return true;
+          }
+          return false;
+        }
+
+        /* ---- 3. Before / After metric color coding ---- */
+        function colorBeforeAfter() {
+          if (document.getElementById('goody-ba-styled')) return true;
+          var allEls = document.querySelectorAll('p, span, li, td, div');
+          var colored = 0;
+          for (var i = 0; i < allEls.length; i++) {
+            var el = allEls[i];
+            /* Skip if it has child elements — only leaf nodes */
+            if (el.children.length > 0) continue;
+            var txt = el.textContent || '';
+            if (/^Before:/i.test(txt.trim())) {
+              el.classList.add('goody-before-val');
+              colored++;
+            } else if (/^After:/i.test(txt.trim())) {
+              el.classList.add('goody-after-val');
+              colored++;
+            }
+          }
+          if (colored > 0) {
+            var marker = document.createElement('span');
+            marker.id = 'goody-ba-styled';
+            marker.style.display = 'none';
+            document.body.appendChild(marker);
+            return true;
+          }
+          return false;
+        }
+
+        /* ---- 4. Comparison table column highlight ---- */
+        function styleComparisonTable() {
+          if (document.getElementById('goody-table-styled')) return true;
+          /* Find table or grid that contains both "GOODY POS" and "TYPICAL POS" */
+          var candidates = document.querySelectorAll('table, [class*="grid"], [class*="table"]');
+          var table = null;
+          for (var i = 0; i < candidates.length; i++) {
+            var txt = candidates[i].innerText || '';
+            if (txt.indexOf('GOODY POS') !== -1 && (txt.indexOf('TYPICAL POS') !== -1 || txt.indexOf('typical') !== -1)) {
+              table = candidates[i];
+              break;
+            }
+          }
+          if (!table) {
+            /* fallback: scan divs */
+            var divs = document.querySelectorAll('section div, section');
+            for (var d = 0; d < divs.length; d++) {
+              var dt = divs[d].innerText || '';
+              if (dt.indexOf('GOODY POS') !== -1 && dt.indexOf('TYPICAL') !== -1) {
+                table = divs[d]; break;
+              }
+            }
+          }
+          if (!table) return false;
+
+          /* Find column cells under "GOODY POS" header */
+          var allCells = table.querySelectorAll('td, th, [class*="col"], [class*="cell"]');
+          if (!allCells.length) {
+            /* grid rows approach */
+            allCells = table.children;
+          }
+          /* Try to identify which column index is Goody */
+          var headers = table.querySelectorAll('th, [class*="header"] > *, [class*="thead"] > *');
+          var goodyColIdx = -1;
+          headers.forEach(function(h, idx) {
+            if ((h.innerText || '').indexOf('GOODY') !== -1) goodyColIdx = idx;
+          });
+
+          /* Simpler: find any cell/div whose direct text contains GOODY POS and add class to its column siblings */
+          var allDivs = table.querySelectorAll('div, td, p, span');
+          for (var j = 0; j < allDivs.length; j++) {
+            var cellTxt = (allDivs[j].innerText || allDivs[j].textContent || '').trim();
+            if (cellTxt === 'GOODY POS') {
+              /* Walk up to row/col container and mark it */
+              var parent = allDivs[j].parentElement;
+              if (parent) {
+                parent.classList.add('goody-col-goody');
+                /* Also mark all siblings in same column position if it's a grid */
+                var grandparent = parent.parentElement;
+                if (grandparent) {
+                  var siblings = grandparent.children;
+                  var idx = Array.prototype.indexOf.call(siblings, parent);
+                  /* Mark all rows' same-index child */
+                  var rows = grandparent.parentElement ? grandparent.parentElement.children : [];
+                  for (var rr = 0; rr < rows.length; rr++) {
+                    if (rows[rr].children[idx]) {
+                      rows[rr].children[idx].classList.add('goody-col-goody');
+                    }
+                  }
+                }
+              }
+            }
+            if (cellTxt === 'TYPICAL POS') {
+              var parent2 = allDivs[j].parentElement;
+              if (parent2) parent2.classList.add('goody-col-typical');
+            }
+          }
+
+          var marker = document.createElement('span');
+          marker.id = 'goody-table-styled';
+          marker.style.display = 'none';
+          document.body.appendChild(marker);
+          return true;
+        }
+
+        /* ---- Run all with retry ---- */
+        ready(function () {
+          var attempts = 0;
+          var maxAttempts = 80;
+          var done = { marquee: false, stats: false, ba: false, table: false };
+          var interval = setInterval(function () {
+            attempts++;
+            if (!done.marquee) done.marquee = injectMarquee();
+            if (!done.stats)   done.stats   = styleStats();
+            if (!done.ba)      done.ba      = colorBeforeAfter();
+            if (!done.table)   done.table   = styleComparisonTable();
+            var allDone = done.marquee && done.stats && done.ba && done.table;
+            if (allDone || attempts >= maxAttempts) clearInterval(interval);
+          }, 300);
         });
       })();
     </script>
