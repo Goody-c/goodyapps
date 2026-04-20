@@ -163,11 +163,16 @@
       #root { position: relative; z-index: 1; }
 
       /* Make the React root transparent so body bg shows */
+      /* Also force .force-light-landing visible — React sets display:none via
+         inline style when data-theme="dark" is on root; CSS !important wins */
       #root > div,
       .force-light-landing,
       [class*="bg-[#fbf9f4]"],
       [class*="bg-\\[\\#fbf9f4\\]"] {
         background: transparent !important;
+      }
+      .force-light-landing {
+        display: block !important;
       }
 
       /* ===== Background overrides — all on navy palette ===== */
