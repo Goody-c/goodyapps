@@ -762,6 +762,52 @@
       @media (max-width: 640px) {
         .goody-hero-price-banner__headline { font-size: 24px; }
       }
+
+      /* ----- Video section ----- */
+      .goody-video-section {
+        margin: 0;
+        padding: 60px 24px 64px;
+        background: var(--g-surface);
+        border-top: 1px solid var(--g-border);
+        text-align: center;
+      }
+
+      .goody-video-section__eyebrow {
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--g-accent);
+        margin: 0 0 10px;
+      }
+
+      .goody-video-section__heading {
+        font-size: clamp(22px, 4vw, 36px);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: var(--g-text);
+        margin: 0 0 32px;
+      }
+
+      .goody-video-wrap {
+        position: relative;
+        max-width: 820px;
+        margin: 0 auto;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--g-border);
+        box-shadow: 0 32px 64px -24px rgba(0,0,0,0.7), 0 0 0 1px rgba(16,185,129,0.12);
+        aspect-ratio: 16 / 9;
+      }
+
+      .goody-video-wrap iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -1406,18 +1452,45 @@
           return true;
         }
 
+        /* ---- 5. Video section ---- */
+        function injectVideoSection() {
+          if (document.getElementById('goody-video-section')) return true;
+          var main = document.querySelector('main');
+          if (!main) return false;
+          /* Insert before the last section (footer-like area) or append */
+          var sections = main.querySelectorAll('section');
+          var anchor = sections.length >= 2 ? sections[sections.length - 2] : null;
+          var sec = document.createElement('section');
+          sec.id = 'goody-video-section';
+          sec.className = 'goody-video-section';
+          sec.innerHTML = [
+            '<p class="goody-video-section__eyebrow">See It In Action</p>',
+            '<h2 class="goody-video-section__heading">Watch Goody POS in under 2 minutes</h2>',
+            '<div class="goody-video-wrap">',
+            '<iframe src="https://www.youtube-nocookie.com/embed/qPdtwNbAYhI?rel=0&modestbranding=1" title="Goody POS product walkthrough" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>',
+            '</div>'
+          ].join('');
+          if (anchor) {
+            main.insertBefore(sec, anchor);
+          } else {
+            main.appendChild(sec);
+          }
+          return true;
+        }
+
         /* ---- Run all with retry ---- */
         ready(function () {
           var attempts = 0;
           var maxAttempts = 80;
-          var done = { marquee: false, stats: false, ba: false, table: false };
+          var done = { marquee: false, stats: false, ba: false, table: false, video: false };
           var interval = setInterval(function () {
             attempts++;
             if (!done.marquee) done.marquee = injectMarquee();
             if (!done.stats)   done.stats   = styleStats();
             if (!done.ba)      done.ba      = colorBeforeAfter();
             if (!done.table)   done.table   = styleComparisonTable();
-            var allDone = done.marquee && done.stats && done.ba && done.table;
+            if (!done.video)   done.video   = injectVideoSection();
+            var allDone = done.marquee && done.stats && done.ba && done.table && done.video;
             if (allDone || attempts >= maxAttempts) clearInterval(interval);
           }, 300);
         });
