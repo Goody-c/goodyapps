@@ -74,7 +74,7 @@
       },
       "potentialAction": {
         "@type": "ViewAction",
-        "target": "https://goodypos.vercel.app/login",
+        "target": "https://goodydemo.vercel.app/login",
         "name": "Try Live Demo"
       }
     }
@@ -90,7 +90,7 @@
       "logo": "https://goody-c.github.io/goodyapps/landing-assets/features/pos-terminal.svg",
       "description": "Makers of Goody POS — affordable, powerful point of sale software for retail and small businesses.",
       "sameAs": [
-        "https://goodypos.vercel.app"
+        "https://goodydemo.vercel.app"
       ]
     }
     </script>
@@ -184,7 +184,7 @@
       /* progress/bar fill bg changes */
       [class*="bg-slate-100"][class*="rounded"] { background-color: #5b21b6 !important; }
       /* CTA links */
-      a[href*="goodypos.vercel.app"], a[href*="calendly"] { color: #ffffff !important; }
+      a[href*="goodydemo.vercel.app"], a[href*="calendly"] { color: #ffffff !important; }
 
       /* ===== White text everywhere ===== */
       #root p { color: #ffffff; }
@@ -564,7 +564,7 @@
         </ul>
 
         <h2>Try a Live Demo</h2>
-        <p>Experience Goody POS before you buy. <a href="https://goodypos.vercel.app/login">Open the live demo</a> using username <em>smart.owner</em> and password <em>Demo1234</em>.</p>
+        <p>Experience Goody POS before you buy. <a href="https://goodydemo.vercel.app/login">Open the live demo</a> using username <em>owner</em> and password <em>demo1234</em>.</p>
 
         <h2>Book a Walkthrough</h2>
         <p>Want a guided tour? <a href="https://calendly.com/goodypcng/live-walkthrough">Book a live walkthrough</a> at your convenience.</p>
@@ -721,7 +721,7 @@
             '<article class="goody-card">',
             '<h4>Primary Actions</h4>',
             '<div class="goody-grid" style="margin-top:10px;">',
-            '<a class="goody-button dark" data-track="demo" href="https://goodypos.vercel.app/login" target="_blank" rel="noreferrer">Open Live Demo</a>',
+            '<a class="goody-button dark" data-track="demo" href="https://goodydemo.vercel.app/login" target="_blank" rel="noreferrer">Open Live Demo</a>',
             '<a class="goody-button" data-track="book" href="https://calendly.com/goodypcng/live-walkthrough" target="_blank" rel="noreferrer">Book Walkthrough</a>',
             '</div>',
             '</article>',
@@ -829,7 +829,7 @@
               return;
             }
 
-            if (el.matches && el.matches('a[href*="goodypos.vercel.app/login"]')) track('demo');
+            if (el.matches && el.matches('a[href*="goodydemo.vercel.app/login"]')) track('demo');
             if (el.matches && el.matches('a[href*="calendly.com"]')) track('book');
             if (el.matches && el.matches('a[href*="wa.me"], a[href*="whatsapp"]')) track('whatsapp');
             if (el.id === 'goody-download-checklist') track('checklist');
