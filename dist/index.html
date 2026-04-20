@@ -98,11 +98,11 @@
     <link rel="stylesheet" crossorigin href="/goodyapps/assets/index-B8lxjJ8G.css?v=20260420b">
     <style>
       /* ===================================================================
-         GOODY POS LANDING — UNIFIED DARK NAVY THEME
-         Single palette: Navy base + Emerald accent + clear text hierarchy
+         GOODY POS LANDING — UNIFIED DARK NAVY THEME  v2
+         Navy base + Emerald accent · dot-grid · gradient h1 · CTA pulse
          =================================================================== */
 
-      /* ===== Base reset ===== */
+      /* ===== Design tokens ===== */
       :root {
         --g-bg:        #0b1120;
         --g-surface:   #141d2e;
@@ -116,6 +116,18 @@
         --g-amber:     #fbbf24;
       }
 
+      /* ===== Keyframes ===== */
+      @keyframes goody-glow-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0),   0 4px 14px -4px rgba(16,185,129,0.45); }
+        50%       { box-shadow: 0 0 0 9px rgba(16,185,129,0), 0 4px 22px -2px rgba(16,185,129,0.65); }
+      }
+
+      @keyframes goody-fade-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0);   }
+      }
+
+      /* ===== Base ===== */
       :root,
       html,
       body {
@@ -123,6 +135,20 @@
         background: var(--g-bg) !important;
         min-height: 100%;
       }
+
+      /* Dot-grid texture — sits behind everything via a fixed pseudo */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+        background-size: 28px 28px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Root above the dot grid */
+      #root { position: relative; z-index: 1; }
 
       /* Make the React root transparent so body bg shows */
       #root > div,
@@ -162,20 +188,26 @@
       .from-slate-50, [class*="from-slate-50"] { --tw-gradient-from: var(--g-surface) !important; }
       [class*="from-white"]                    { --tw-gradient-from: var(--g-card)    !important; }
 
-      /* ===== Nav / header ===== */
+      /* ===== Nav / header — always-visible bottom rule ===== */
       nav, header {
         background-color: rgba(11,17,32,0.96) !important;
         border-color: var(--g-border) !important;
-        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--g-border) !important;
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
       }
 
-      /* ===== Feature / reveal cards ===== */
+      /* ===== Feature / reveal cards — left accent border on hover ===== */
       [data-reveal-card] {
         background-color: var(--g-card)   !important;
         border-color:     var(--g-border) !important;
+        border-left-width: 3px !important;
+        border-left-color: transparent !important;
+        transition: border-left-color 0.25s, box-shadow 0.25s !important;
       }
       [data-reveal-card]:hover {
-        box-shadow: 0 28px 55px -28px rgba(16,185,129,0.18) !important;
+        border-left-color: var(--g-accent) !important;
+        box-shadow: 0 28px 55px -28px rgba(16,185,129,0.22) !important;
       }
 
       /* ===== Border overrides ===== */
@@ -231,7 +263,16 @@
       #root label  { color: var(--g-text-sub); }
 
       /* ===== Headings ===== */
-      #root h1, #root h2, #root h3 {
+      /* h1 — emerald gradient headline */
+      #root h1 {
+        background: linear-gradient(135deg, #6ee7b7 0%, #10b981 45%, #f1f5f9 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        color: transparent !important;
+      }
+      /* h2, h3 — plain bright white */
+      #root h2, #root h3 {
         background: none !important;
         -webkit-text-fill-color: var(--g-text) !important;
         color: var(--g-text) !important;
@@ -414,11 +455,14 @@
         border-color: var(--g-accent-dk);
         background: var(--g-accent);
         color: #fff;
+        animation: goody-glow-pulse 2.6s ease-in-out infinite;
       }
       .goody-button.primary:hover,
       .goody-button.dark:hover {
         background: var(--g-accent-dk);
         border-color: var(--g-accent-dk);
+        animation: none;
+        box-shadow: 0 4px 22px -2px rgba(16,185,129,0.7);
       }
 
       /* ----- Inline note ----- */
@@ -479,6 +523,13 @@
         font-size: 11px;
         font-weight: 700;
         color: var(--g-text-sub);
+      }
+
+      /* ===== Section dividers ===== */
+      #root main > section + section,
+      #root main > div + section,
+      #root main > section + div {
+        border-top: 1px solid var(--g-border);
       }
 
       /* ===== Responsive breakpoints ===== */
