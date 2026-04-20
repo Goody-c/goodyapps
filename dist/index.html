@@ -296,6 +296,69 @@
       #root .text-amber-800  { color: var(--g-amber)         !important; }
       #root .border-amber-200 { border-color: rgba(251,191,36,0.3) !important; }
 
+      /* ===== Testimonial cards — white text + styled role/country pills ===== */
+      /* Card wrapper text */
+      #root [class*="testimonial"],
+      #root [class*="review"],
+      #root [class*="quote"] { color: var(--g-text) !important; }
+
+      /* Quote body text — full white */
+      #root blockquote p,
+      #root blockquote,
+      #root [class*="italic"],
+      #root [class*="font-medium"] { color: var(--g-text) !important; }
+
+      /* Reviewer name */
+      #root [class*="font-bold"],
+      #root [class*="font-semibold"] { color: var(--g-text) !important; }
+
+      /* Location / sub-label text */
+      #root [class*="text-xs"],
+      #root [class*="tracking-wide"] { color: var(--g-text-sub) !important; }
+
+      /* ---- Role pills (outlined — e.g. FLOOR TEAM, SUPERMARKET) ---- */
+      /* These are typically rounded-full with a light bg + border */
+      #root [class*="rounded-full"][class*="border"],
+      #root [class*="rounded-full"][class*="bg-slate"],
+      #root [class*="rounded-full"][class*="bg-white"],
+      #root [class*="rounded-full"][class*="bg-gray"] {
+        background-color: transparent !important;
+        border: 1.5px solid rgba(255,255,255,0.55) !important;
+        color: #ffffff !important;
+      }
+
+      /* ---- Country pills (solid — e.g. GHA, UAE, USA) ---- */
+      /* Darker / smaller pills that sit beside the role badge */
+      #root [class*="rounded-full"][class*="bg-slate-700"],
+      #root [class*="rounded-full"][class*="bg-slate-800"],
+      #root [class*="rounded-full"][class*="bg-slate-900"],
+      #root [class*="rounded-full"][class*="bg-zinc"],
+      #root [class*="rounded-full"][class*="bg-gray-7"],
+      #root [class*="rounded-full"][class*="bg-gray-8"],
+      #root [class*="rounded-full"][class*="bg-gray-9"] {
+        background-color: var(--g-accent) !important;
+        border: none !important;
+        color: #ffffff !important;
+      }
+
+      /* Ensure all text inside any rounded-full pill is white */
+      #root [class*="rounded-full"] span,
+      #root [class*="rounded-full"] { color: #ffffff !important; }
+
+      /* ---- Result banner (e.g. "CHECKOUT FLOW IMPROVED IN FIRST WEEK.") ---- */
+      #root [class*="bg-slate"][class*="rounded"] p,
+      #root [class*="bg-slate"][class*="rounded"] span {
+        color: #ffffff !important;
+      }
+
+      /* ---- General: force all <p> <span> <li> inside cards white ---- */
+      #root [class*="rounded-"][class*="border"] p,
+      #root [class*="rounded-"][class*="border"] span,
+      #root [class*="rounded-"][class*="border"] li,
+      #root [class*="rounded-"][class*="border"] strong {
+        color: var(--g-text) !important;
+      }
+
       /* ===================================================================
          GOODY CUSTOM COMPONENTS
          =================================================================== */
